@@ -2,6 +2,11 @@
 #include <DHT.h>
 #include <HCSR04.h>
 #include <PIR.h>
+#define LED1 2
+#define LED2 3
+#define LED3 4
+#define LED4 5
+
 
 // put function declarations here:
 int myFunction(int, int);
@@ -12,6 +17,9 @@ void PIRSensorDetecting();
 
 void MeasureDistance();
 
+void LEDControl();
+
+unsigned char Pins[4] = {LED1, LED2, LED3, LED4};
 
 // Global variables
 DHT dht11(10, DHT11);
@@ -23,6 +31,7 @@ UltraSonicDistanceSensor DistanceSensorHCSR04(7, 6);
 void setup()
 {
   // put your setup code here, to run once:
+  int i;
   int result = myFunction(2, 3);
   Serial.begin(9600);
   Serial.print("The result is: ");
@@ -30,14 +39,21 @@ void setup()
   dht11.begin();
   MovementSensorDetector.add(9);
   Serial.println("Begin: ");
+  for(i = 0; i < 4; i++)
+  {
+    digitalWrite (Pins[i], HIGH);
+    pinMode (Pins[i], OUTPUT);
+  }
 }
 
 void loop()
 {
   delay(100);
-  MeasureTemperatureAndHumidity();
-  MeasureDistance();
-  PIRSensorDetecting();
+  //MeasureTemperatureAndHumidity();
+  //MeasureDistance();
+  //PIRSensorDetecting();
+  LEDControl();
+
 }
 
 // put function definitions here:
@@ -72,5 +88,17 @@ void PIRSensorDetecting()
     Serial.print(millis());
     Serial.print("\t");
     Serial.println(newValue, HEX);
+  }
+}
+int led_counter= 0;
+void LEDControl()
+{
+  //led_counter=random(4);
+  digitalWrite (Pins[led_counter], !digitalRead(Pins[led_counter]));
+  Serial.println(led_counter);
+  led_counter++;
+  if (led_counter > 3)
+  {
+    led_counter = 0;
   }
 }
