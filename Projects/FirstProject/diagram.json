@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "author": "Lili Vasileva",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 154.2, "left": 303.6, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -95.7, "left": 532.2, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": 176.8, "left": 866.22, "attrs": {} },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": -8.1, "left": 840.7, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -80.4,
+      "left": 359,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -80.4,
+      "left": 195.8,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -80.4,
+      "left": 243.8,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led4",
+      "top": -80.4,
+      "left": 301.4,
+      "attrs": { "color": "orange" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 52.8,
+      "left": 201.05,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 62.4,
+      "left": 354.65,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 52.8,
+      "left": 297.05,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": 43.2,
+      "left": 249.05,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "led2:C", "led3:C", "green", [ "v48", "h29.2" ] ],
+    [ "led3:C", "led4:C", "green", [ "v48", "h58", "v-48" ] ],
+    [ "led4:C", "led1:C", "green", [ "v48", "h58" ] ],
+    [ "led2:C", "mega:GND.3", "black", [ "v403.2", "h334.15" ] ],
+    [ "led2:A", "r1:1", "green", [ "v0" ] ],
+    [ "led3:A", "r4:1", "green", [ "v0" ] ],
+    [ "led4:A", "r3:1", "green", [ "v0" ] ],
+    [ "led1:A", "r2:1", "green", [ "v0" ] ],
+    [ "r1:2", "mega:5", "green", [ "h0", "v46.8", "h259.2" ] ],
+    [ "r4:2", "mega:4", "green", [ "h0", "v46.8", "h230.4" ] ],
+    [ "r3:2", "mega:3", "green", [ "h0", "v27.6", "h192" ] ],
+    [ "r2:2", "mega:2", "green", [ "h0", "v8.4", "h134.4" ] ],
+    [ "dht1:GND", "mega:GND.2", "black", [ "h153.6", "v364.8", "h-249.6", "v-45.3" ] ],
+    [ "dht1:VCC", "mega:5V", "red", [ "v28.8", "h163.2", "v364.8", "h-242.3" ] ],
+    [ "dht1:SDA", "mega:10", "green", [ "v38.4", "h-95.6" ] ],
+    [ "pir1:GND", "mega:GND.3", "black", [ "v163.2", "h-451.46" ] ],
+    [ "pir1:OUT", "mega:9", "green", [ "v67.2", "h-115.34", "v-268.8", "h-326.4", "v96" ] ],
+    [ "mega:5V", "pir1:VCC", "red", [ "v112.5", "h434.3" ] ],
+    [ "ultrasonic1:GND", "mega:GND.2", "black", [ "v28.8", "h46.8", "v355.2", "h-510.95" ] ],
+    [ "ultrasonic1:ECHO", "mega:6", "green", [ "v19.2", "h-336.8", "v-9.6", "h-96" ] ],
+    [ "ultrasonic1:TRIG", "mega:7", "green", [ "v9.6", "h-317.2", "v-9.6", "h-105.6" ] ],
+    [ "ultrasonic1:VCC", "mega:5V", "red", [ "v48", "h144", "v374.4", "h-585.6" ] ]
+  ],
+  "dependencies": {}
+}

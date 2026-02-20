@@ -22,8 +22,13 @@ void LEDControl();
 unsigned char Pins[4] = {LED1, LED2, LED3, LED4};
 
 // Global variables
-DHT dht11(10, DHT11);
+
+//For real hardware should be used DHT11, for simulation - DHT22.
+//DHT dht11(10, DHT11);
+DHT dht11(10, DHT22);
+
 int a = 10, b = 70;
+
 PIR MovementSensorDetector;
 
 UltraSonicDistanceSensor DistanceSensorHCSR04(7, 6);
@@ -48,10 +53,10 @@ void setup()
 
 void loop()
 {
-  delay(100);
-  //MeasureTemperatureAndHumidity();
-  //MeasureDistance();
-  //PIRSensorDetecting();
+  delay(1000);
+  MeasureTemperatureAndHumidity();
+  MeasureDistance();
+  PIRSensorDetecting();
   LEDControl();
 
 }
@@ -95,7 +100,7 @@ void LEDControl()
 {
   //led_counter=random(4);
   digitalWrite (Pins[led_counter], !digitalRead(Pins[led_counter]));
-  Serial.println(led_counter);
+ //Serial.println(led_counter);
   led_counter++;
   if (led_counter > 3)
   {
